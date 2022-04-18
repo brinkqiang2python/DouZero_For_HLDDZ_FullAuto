@@ -55,7 +55,7 @@ AllCards = ['rD', 'bX', 'b2', 'r2', 'bA', 'rA', 'bK', 'rK', 'bQ', 'rQ', 'bJ', 'r
             'b9', 'r9', 'b8', 'r8', 'b7', 'r7', 'b6', 'r6', 'b5', 'r5', 'b4', 'r4', 'b3', 'r3']
 
 helper = GameHelper()
-helper.ScreenZoomRate = 1.25
+helper.ScreenZoomRate = 1.00
 
 def manual_landlord_requirements(cards_str):
     counter = collections.Counter(cards_str)
