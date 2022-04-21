@@ -1,4 +1,9 @@
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+
+cd /d %~dp0
+
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
-@echo 环境配置完成
-@pause
+
+rem 需要管理员权限运行 否则某些API会没有权限
+
+pause
+

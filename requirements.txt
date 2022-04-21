@@ -9,3 +9,6 @@ pywin32
 matplotlib
 opencv-python
 requests
+pyinstaller
+sip
+pytest

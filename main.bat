@@ -1,5 +1,7 @@
 cd /d %~dp0
-python3 main.py
-rem 需要管理员权限运行 否则某些API会没有权限
+
+python movewindow.py
+python main.py
+rem ��Ҫ����ԱȨ������ ����ĳЩAPI��û��Ȩ��
 pause
 
