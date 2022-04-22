@@ -2,7 +2,7 @@
 DouZero_For_HLDDZ_FullAuto 成品包
 
 ```
-增加了com获取坐标 自动重定向坐标（左上角）
+增加了com组件获取坐标 自动重定向坐标（左上角）
 ```
 
 
