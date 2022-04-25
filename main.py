@@ -153,7 +153,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.initial_multiply = ""
         # -------------------
         self.shouldExit = 0  # 通知上一轮记牌结束
-        self.modeType = 2 # {1: resnet, 2: WP, 3: ADP}
+        self.modeType = 1 # {1: resnet, 2: WP, 3: ADP}
 
         self.card_play_model_path_dict = {
             'landlord': "baselines/resnet/resnet_landlord.ckpt",
@@ -172,7 +172,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         }
 
         if self.modeType == 1:
-            LandlordModel.init_model("baselines/resnet/landlord.ckpt")
+            LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
         elif self.modeType == 2:
             LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
         elif self.modeType == 3:
