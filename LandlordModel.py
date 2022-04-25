@@ -81,9 +81,10 @@ def init_model(model_path):
     pre_env = GameEnv(pre_ai_players)
     if "resnet" in model_path:
         model_type = "resnet"
-    else:
-        model_type = "old"
-
+    if "WP" in model_path:
+        model_type = "WP"
+    if "ADP" in model_path:
+        model_type = "ADP"
 
 
 def predict_by_model(cards, llc):

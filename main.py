@@ -153,6 +153,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.initial_multiply = ""
         # -------------------
         self.shouldExit = 0  # 通知上一轮记牌结束
+        self.modeType = 2 # {1: resnet, 2: WP, 3: ADP}
+
         self.card_play_model_path_dict = {
             'landlord': "baselines/resnet/resnet_landlord.ckpt",
             'landlord_up': "baselines/resnet/resnet_landlord_up.ckpt",
@@ -163,7 +165,20 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             'landlord_up': "baselines/douzero_WP/landlord_up.ckpt",
             'landlord_down': "baselines/douzero_WP/landlord_down.ckpt"
         }
-        LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
+        self.card_play_adp_model_path = {
+            'landlord': "baselines/douzero_ADP/landlord.ckpt",
+            'landlord_up': "baselines/douzero_ADP/landlord_up.ckpt",
+            'landlord_down': "baselines/douzero_ADP/landlord_down.ckpt"
+        }
+
+        if self.modeType == 1:
+            LandlordModel.init_model("baselines/resnet/landlord.ckpt")
+        elif self.modeType == 2:
+            LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
+        elif self.modeType == 3:
+            LandlordModel.init_model("baselines/douzero_ADP/landlord.ckpt")
+        else:
+            LandlordModel.init_model("baselines/resnet/landlord.ckpt")
 
     def init_display(self):
         self.WinRate.setText("评分")
@@ -259,11 +274,26 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.play_order = 0 if self.user_position == "landlord" else 1 if self.user_position == "landlord_up" else 2
         self.LastValidPlayPos = self.play_order
 
-        ai_players = [self.user_position,
-                      DeepAgent(self.user_position, self.card_play_model_path_dict[self.user_position])]
+        #ai_players = [self.user_position,
+        #              DeepAgent(self.user_position, self.card_play_model_path_dict[self.user_position])]
         # ai_players2 = [self.user_position,
         #                DeepAgent(self.user_position, self.card_play_wp_model_path[self.user_position])]
-        self.env = GameEnv(ai_players, None)
+
+
+        if self.modeType == 1:
+            ai_players = [self.user_position, DeepAgent(self.user_position, self.card_play_model_path_dict[self.user_position])]
+            self.env = GameEnv(ai_players, None)
+        elif self.modeType == 2:
+            ai_players = [self.user_position, DeepAgent(self.user_position, self.card_play_wp_model_path[self.user_position])]
+            self.env = GameEnv(ai_players, None)
+        elif self.modeType == 3:
+            ai_players = [self.user_position, DeepAgent(self.user_position, self.card_play_adp_model_path[self.user_position])]
+            self.env = GameEnv(ai_players, None)
+        else:
+            ai_players = [self.user_position, DeepAgent(self.user_position, self.card_play_model_path_dict[self.user_position])]
+            self.env = GameEnv(ai_players, None)
+
+        #self.env = GameEnv(ai_players, None)
 
         try:
             self.start()
