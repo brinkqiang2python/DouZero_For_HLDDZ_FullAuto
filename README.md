@@ -8,7 +8,7 @@ DouZero_For_HLDDZ_FullAuto 成品包
 
 # 1. 流程如下
 
-## 1. 先安装python3.8+
+## 1. 先安装python3.8+ (注意： 不要使用默认路径。不要使用中文路径。怕麻烦 安装时就填C:\python38 这样路径)
 
 ## 2. 右键管理员权限 运行reg_win64.bat 注册com组件
 
