@@ -32,3 +32,4 @@ ret = op.MoveWindow(hwnd, 0 , 0)
 ret,y1,y2,x1,x2 = op.GetWindowRect(hwnd)
 
 print(x1, ",", y1, ",", x2, ",", y2)
+ret = op.Capture(y1,y2,x1,x2, "Capture.png")
