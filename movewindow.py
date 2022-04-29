@@ -28,8 +28,9 @@ if hwnd:
 id = op.GetWindowProcessId(hwnd)
 ret = op.MoveWindow(hwnd, 0 , 0)
 
-ret,y1,y2,x1,x2 = op.GetWindowRect(hwnd)
+ret,x1,x2,y1,y2,= op.GetWindowRect(hwnd)
 
-print(x1, ",", y1, ",", x2, ",", y2)
-ret = op.Capture(y1,y2,x1,x2, op.GetBasePath() + "\\" + "c.png")
+print(y1, ",", x1,  ",", y2, ",", x2)
+ret = op.Capture(x1,x2, y1,y2, op.GetBasePath() + "\\" + "c.png")
 print("output c.png ", ret)
+
