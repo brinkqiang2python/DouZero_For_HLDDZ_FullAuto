@@ -1,5 +1,5 @@
 # import moudles
-# python3 -m pip install pypiwin32
+# python -m pip install pypiwin32
 from win32com.client import Dispatch
 import sys
 import time
