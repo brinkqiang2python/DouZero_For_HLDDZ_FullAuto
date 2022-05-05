@@ -492,11 +492,15 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 # self.sleep(400)
                 hand_cards_str = ''.join(
                     [EnvCard2RealCard[c] for c in self.env.info_sets[self.user_position].player_hand_cards])
+
+
+                other_cards_all_str = ''.join(
+                    [EnvCard2RealCard[c] for c in self.env.info_sets[self.user_position].other_hand_cards])
                 if first_run:
                     self.initial_model_rate = round(float(action_message["win_rate"]), 3)  # win_rate at start
                     first_run = False
                 print("出牌:", action_message["action"] if action_message["action"] else "Pass", "| 得分:",
-                      round(action_message["win_rate"], 3), "| 剩余手牌:", hand_cards_str)
+                      round(action_message["win_rate"], 3), "| 剩余手牌:", hand_cards_str, "| 记牌器:", other_cards_all_str)
                 print(action_list_str)
                 if not (self.upper_played_cards_real == "DX" or self.lower_played_cards_real == "DX" or
                         (len(hand_cards_str + action_message["action"]) == 1 and len(

@@ -108,4 +108,4 @@ def evaluate(landlord, landlord_up, landlord_down):
         env.reset()
 
 if __name__ == "__main__":
-    evaluate(r"E:\DouZero\DouZero_For_HappyDouDiZhu-master/baselines/ultimate/resnet_landlord.ckpt", "./baselines/ultimate/resnet_landlord.ckpt", "./baselines/ultimate/resnet_landlord.ckpt")
+    evaluate(r"./baselines/resnet/resnet_landlord.ckpt", "./baselines/resnet/resnet_landlord_up.ckpt", "./baselines/resnet/resnet_landlord_down.ckpt")
