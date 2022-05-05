@@ -304,7 +304,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
     def sleep(self, ms):
         self.counter.restart()
-        while self.counter.elapsed() < ms:
+        while self.counter.elapsed() < ms * 0.5:
             QtWidgets.QApplication.processEvents(QEventLoop.AllEvents, 50)
 
     def waitUntilNoAnimation(self, ms=150):
