@@ -36,6 +36,10 @@ import BidModel
 import LandlordModel
 import FarmerModel
 
+import movewindow
+
+movewindow.move_window()
+
 warnings.filterwarnings('ignore')
 
 
@@ -172,13 +176,13 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         }
 
         if self.modeType == 1:
-            LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
+            LandlordModel.init_model("baselines/resnet/resnet_landlord.ckpt")
         elif self.modeType == 2:
             LandlordModel.init_model("baselines/douzero_WP/landlord.ckpt")
         elif self.modeType == 3:
             LandlordModel.init_model("baselines/douzero_ADP/landlord.ckpt")
         else:
-            LandlordModel.init_model("baselines/resnet/landlord.ckpt")
+            LandlordModel.init_model("baselines/resnet/resnet_landlord.ckpt")
 
     def init_display(self):
         self.WinRate.setText("评分")
@@ -500,7 +504,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     self.initial_model_rate = round(float(action_message["win_rate"]), 3)  # win_rate at start
                     first_run = False
                 print("出牌:", action_message["action"] if action_message["action"] else "Pass", "| 得分:",
-                      round(action_message["win_rate"], 3), "| 剩余手牌:", hand_cards_str, "| 记牌器:", other_cards_all_str)
+                      round(action_message["win_rate"], 3), "| 剩余手牌:", hand_cards_str, "| 记牌器：", other_cards_all_str)
+                self.CardRecorder.setText("记牌器：" + other_cards_all_str)
                 print(action_list_str)
                 if not (self.upper_played_cards_real == "DX" or self.lower_played_cards_real == "DX" or
                         (len(hand_cards_str + action_message["action"]) == 1 and len(
@@ -651,6 +656,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         if result is not None:
             helper.ClickOnImage("yes_btn_sm", region=(669, 583, 468, 100), img=img)
             self.sleep(200)
+        self.start_game_find()
 
     def find_three_landlord_cards(self, pos):
         img, _ = helper.Screenshot(region=pos)
@@ -796,6 +802,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         return False
 
+    def start_game_find(self):
+            start_game_btn = helper.LocateOnScreen("start_game_btn", region=self.GeneralBtnPos)
+            if start_game_btn is not None:
+                helper.ClickOnImage("start_game_btn", region=self.GeneralBtnPos)
+
     def before_start(self):
         self.RunGame = True
         GameHelper.Interrupt = True
@@ -819,6 +830,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 jiaodizhu_btn = helper.LocateOnScreen("jiaodizhu_btn", region=(765, 663, 116, 50))
                 qiangdizhu_btn = helper.LocateOnScreen("qiangdizhu_btn", region=(783, 663, 116, 50))
                 jiabei_btn = helper.LocateOnScreen("jiabei_btn", region=self.GeneralBtnPos)
+                self.start_game_find()
+
             if jiabei_btn is None:
                 img, _ = helper.Screenshot()
                 cards, _ = helper.GetCards(img)

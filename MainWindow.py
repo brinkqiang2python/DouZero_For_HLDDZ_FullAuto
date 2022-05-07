@@ -193,6 +193,17 @@ class Ui_Form(object):
         self.PreWinrate.setFont(font)
         self.PreWinrate.setObjectName("PreWinrate")
 
+        self.CardRecorder = QtWidgets.QLabel(Form)
+        self.CardRecorder.setGeometry(QtCore.QRect(50, 320, 411, 41))
+        font = QtGui.QFont()
+        font.setFamily("等线")
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.CardRecorder.setFont(font)
+        self.CardRecorder.setObjectName("CardRecorder")
+
         self.retranslateUi(Form)
         self.InitCard.clicked.connect(Form.init_cards)
         self.Stop.clicked.connect(Form.stop)
@@ -215,3 +226,4 @@ class Ui_Form(object):
         self.AutoStart.setText(_translate("Form", "自动开始"))
         self.BidWinrate.setText(_translate("Form", "叫牌预估得分："))
         self.PreWinrate.setText(_translate("Form", "局前预估得分："))
+        self.CardRecorder.setText(_translate("Form", "记牌器："))
