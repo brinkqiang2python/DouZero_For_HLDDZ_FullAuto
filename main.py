@@ -36,9 +36,9 @@ import BidModel
 import LandlordModel
 import FarmerModel
 
-#import mymovewindow
+import mymovewindow
 
-#mymovewindow.move_window()
+mymovewindow.move_window()
 
 warnings.filterwarnings('ignore')
 
